@@ -26,6 +26,7 @@ const Products = () => {
     const [showScanner, setShowScanner] = useState(false);
     const [highlightedProduct, setHighlightedProduct] = useState(null);
 
+    /* QR Scanner Disabled by User Request
     const handleScan = (data) => {
         if (data) {
             const product = products.find(p => p.id === data || p.name === data);
@@ -40,25 +41,26 @@ const Products = () => {
             }
         }
     };
+    */
 
     return (
         <div className="fade-in container section">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-md)' }}>
                 <h1 style={{ color: 'var(--color-primary)' }}>Our Products</h1>
-                <button
+                {/* <button
                     className="btn btn-outline"
                     onClick={() => setShowScanner(!showScanner)}
                 >
                     {showScanner ? 'Close Scanner' : 'Scan QR Code'}
-                </button>
+                </button> */}
             </div>
 
-            {showScanner && (
+            {/* {showScanner && (
                 <div style={{ marginBottom: 'var(--spacing-md)', padding: '1rem', border: '1px solid var(--color-border)', borderRadius: '8px' }}>
                     <p className="text-center mb-sm">Scan a product QR code to find it on the page.</p>
                     <QRScanner onScanResult={handleScan} />
                 </div>
-            )}
+            )} */}
 
             <div className="products-list">
                 {products.map((product, index) => (

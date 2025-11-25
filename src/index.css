@@ -2,10 +2,13 @@
 
 :root {
   /* Brand Colors */
-  --color-primary: #367588; /* Teal Blue */
-  --color-secondary: #89CFF0; /* Baby Blue */
-  --color-accent: #E0F7FA; /* Very light cyan for backgrounds */
-  
+  --color-primary: #367588;
+  /* Teal Blue */
+  --color-secondary: #89CFF0;
+  /* Baby Blue */
+  --color-accent: #E0F7FA;
+  /* Very light cyan for backgrounds */
+
   /* Neutral Colors */
   --color-bg: #FFFFFF;
   --color-text-main: #333333;
@@ -20,11 +23,12 @@
   --spacing-xl: 8rem;
 
   /* Typography */
-  --font-family: 'Inter', sans-serif;
-  --font-size-base: 16px;
-  --font-size-h1: 3rem;
-  --font-size-h2: 2.25rem;
-  --font-size-h3: 1.5rem;
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-size-base: 18px;
+  --font-size-h1: 4.5rem;
+  --font-size-h2: 3.5rem;
+  --font-size-h3: 2.5rem;
+  --font-size-large: 1.5rem;
 }
 
 * {
@@ -33,12 +37,18 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
 body {
   font-family: var(--font-family);
   background-color: var(--color-bg);
   color: var(--color-text-main);
-  line-height: 1.6;
+  line-height: 1.4;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 a {
@@ -93,21 +103,67 @@ img {
   color: white;
 }
 
-.section {
-  padding: var(--spacing-lg) 0;
+.section-fullscreen {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+  padding: var(--spacing-lg) var(--spacing-sm);
+  position: relative;
+  overflow: hidden;
 }
 
-.text-center { text-align: center; }
-.mb-sm { margin-bottom: var(--spacing-sm); }
-.mb-md { margin-bottom: var(--spacing-md); }
-.mb-lg { margin-bottom: var(--spacing-lg); }
+.text-large {
+  font-size: var(--font-size-large);
+  font-weight: 300;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-sm {
+  margin-bottom: var(--spacing-sm);
+}
+
+.mb-md {
+  margin-bottom: var(--spacing-md);
+}
+
+.mb-lg {
+  margin-bottom: var(--spacing-lg);
+}
 
 /* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
+.fade-in-up {
+  animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  /* Start hidden */
+}
+
+.delay-1 {
+  animation-delay: 0.2s;
+}
+
+.delay-2 {
+  animation-delay: 0.4s;
+}
+
+.delay-3 {
+  animation-delay: 0.6s;
 }
