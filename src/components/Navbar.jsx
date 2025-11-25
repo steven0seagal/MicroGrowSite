@@ -65,15 +65,17 @@ const Navbar = () => {
     });
 
     return (
-        <nav className="container" style={navStyle}>
-            <Link to="/" style={logoStyle}>
-                MicroGrow
-            </Link>
+        <nav style={navStyle}>
+            <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                <Link to="/" style={logoStyle}>
+                    MicroGrow
+                </Link>
 
-            <div className="nav-links">
-                <Link to="/" style={linkStyle('/')}>Home</Link>
-                <Link to="/products" style={linkStyle('/products')}>Products</Link>
-                <Link to="/team" style={linkStyle('/team')}>Team & Contact</Link>
+                <div className="nav-links">
+                    <Link to="/" style={linkStyle('/')}>Home</Link>
+                    <Link to="/products" style={linkStyle('/products')}>Products</Link>
+                    <Link to="/team" style={linkStyle('/team')}>Team & Contact</Link>
+                </div>
             </div>
         </nav>
     );

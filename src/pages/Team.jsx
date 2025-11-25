@@ -30,7 +30,8 @@ const teamMembers = [
 const Team = () => {
     return (
         <div className="fade-in-up">
-            <section className="section-fullscreen" style={{ minHeight: '60vh', backgroundColor: '#F5F5F7' }}>
+            {/* Section 1: Our Team (Intro) */}
+            <section className="section-fullscreen" style={{ backgroundColor: '#F5F5F7' }}>
                 <div className="container text-center">
                     <h1 style={{ fontSize: 'var(--font-size-h1)', color: 'var(--color-primary)', marginBottom: 'var(--spacing-sm)' }}>
                         Our Team
@@ -41,43 +42,47 @@ const Team = () => {
                 </div>
             </section>
 
-            <section className="container" style={{ padding: 'var(--spacing-lg) 0' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem' }}>
-                    {teamMembers.map((member, index) => (
-                        <div key={member.id} className={`fade-in-up delay-${index + 1}`} style={{ textAlign: 'center' }}>
-                            <img
-                                src={member.image}
-                                alt={member.name}
-                                style={{
-                                    width: '200px',
-                                    height: '200px',
-                                    borderRadius: '50%',
-                                    margin: '0 auto var(--spacing-md)',
-                                    objectFit: 'cover',
-                                    boxShadow: '0 10px 20px rgba(0,0,0,0.1)'
-                                }}
-                            />
-                            <h3 style={{ fontSize: '1.75rem', marginBottom: '0.5rem', color: 'var(--color-text-main)' }}>{member.name}</h3>
-                            <p style={{ color: 'var(--color-primary)', fontWeight: '600', marginBottom: '1rem', fontSize: '1.1rem' }}>{member.role}</p>
-                            <p style={{ color: 'var(--color-text-light)', lineHeight: '1.6', marginBottom: '1.5rem' }}>{member.bio}</p>
-                            <a href={`mailto:${member.email}`} className="btn btn-outline" style={{ borderRadius: '20px', padding: '0.5rem 1.5rem', fontSize: '0.9rem' }}>
-                                Contact
-                            </a>
-                        </div>
-                    ))}
+            {/* Section 2: Photos (Team Grid) */}
+            <section className="section-fullscreen" style={{ backgroundColor: 'white' }}>
+                <div className="container">
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem' }}>
+                        {teamMembers.map((member, index) => (
+                            <div key={member.id} className={`fade-in-up delay-${index + 1}`} style={{ textAlign: 'center' }}>
+                                <img
+                                    src={member.image}
+                                    alt={member.name}
+                                    style={{
+                                        width: '200px',
+                                        height: '200px',
+                                        borderRadius: '50%',
+                                        margin: '0 auto var(--spacing-md)',
+                                        objectFit: 'cover',
+                                        boxShadow: '0 10px 20px rgba(0,0,0,0.1)'
+                                    }}
+                                />
+                                <h3 style={{ fontSize: '1.75rem', marginBottom: '0.5rem', color: 'var(--color-text-main)' }}>{member.name}</h3>
+                                <p style={{ color: 'var(--color-primary)', fontWeight: '600', marginBottom: '1rem', fontSize: '1.1rem' }}>{member.role}</p>
+                                <p style={{ color: 'var(--color-text-light)', lineHeight: '1.6' }}>{member.bio}</p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </section>
 
-            <section className="section-fullscreen" style={{ backgroundColor: '#1d1d1f', color: 'white', minHeight: '50vh' }}>
+            {/* Section 3: Get in Touch */}
+            <section className="section-fullscreen" style={{ backgroundColor: '#1d1d1f', color: 'white' }}>
                 <div className="container text-center">
                     <h2 style={{ fontSize: 'var(--font-size-h2)', marginBottom: 'var(--spacing-md)', color: 'white' }}>Get in Touch</h2>
                     <p className="text-large" style={{ marginBottom: 'var(--spacing-md)', color: '#a1a1a6' }}>
                         Collaborate with us on your next breakthrough.
                     </p>
-                    <div style={{ fontSize: '1.2rem' }}>
+                    <div style={{ fontSize: '1.2rem', marginBottom: 'var(--spacing-md)' }}>
                         <p style={{ marginBottom: '0.5rem' }}>info@microgrow.com</p>
                         <p>+1 (555) 123-4567</p>
                     </div>
+                    <a href="mailto:info@microgrow.com" className="btn btn-primary" style={{ borderRadius: '30px', padding: '1rem 2.5rem' }}>
+                        Contact Us
+                    </a>
                 </div>
             </section>
         </div>
