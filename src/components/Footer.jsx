@@ -5,6 +5,7 @@ const Footer = () => {
         backgroundColor: 'var(--color-accent)',
         padding: '3rem 0',
         marginTop: 'auto', // Push to bottom if flex container
+        scrollSnapAlign: 'start',
     };
 
     const contentStyle = {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 // import './Navbar.css'; // Removed as we are using global/inline styles
 // Let's stick to a simple inline style or module approach for simplicity, or just global classes.
@@ -6,7 +6,31 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
     const location = useLocation();
-    const [isOpen, setIsOpen] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
+
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            if (e.clientY < 60 || window.scrollY < 50) {
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);
+            }
+        };
+
+        const handleScroll = () => {
+            if (window.scrollY < 50) {
+                setIsVisible(true);
+            }
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     const isActive = (path) => location.pathname === path;
 
@@ -16,6 +40,15 @@ const Navbar = () => {
         alignItems: 'center',
         padding: '1.5rem 0',
         borderBottom: '1px solid var(--color-border)',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        zIndex: 1000,
+        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        backdropFilter: 'blur(10px)',
+        transition: 'transform 0.3s ease-in-out',
+        transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
     };
 
     const logoStyle = {
