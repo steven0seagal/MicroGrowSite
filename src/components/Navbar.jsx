@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-// import './Navbar.css'; // Removed as we are using global/inline styles
-// Let's stick to a simple inline style or module approach for simplicity, or just global classes.
-// For now, I'll use inline styles for layout specific to this component to keep it self-contained or use the global classes.
 
 const Navbar = () => {
     const location = useLocation();
     const [isVisible, setIsVisible] = useState(true);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleMouseMove = (e) => {
@@ -64,20 +62,110 @@ const Navbar = () => {
         color: isActive(path) ? 'var(--color-primary)' : 'var(--color-text-main)',
     });
 
-    return (
-        <nav style={navStyle}>
-            <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-                <Link to="/" style={logoStyle}>
-                    MicroGrow
-                </Link>
+    const hamburgerStyle = {
+        display: 'none',
+        flexDirection: 'column',
+        cursor: 'pointer',
+        gap: '4px',
+    };
 
-                <div className="nav-links">
-                    <Link to="/" style={linkStyle('/')}>Home</Link>
-                    <Link to="/products" style={linkStyle('/products')}>Products</Link>
-                    <Link to="/team" style={linkStyle('/team')}>Team & Contact</Link>
+    const hamburgerLineStyle = {
+        width: '25px',
+        height: '3px',
+        backgroundColor: 'var(--color-primary)',
+        borderRadius: '2px',
+        transition: 'all 0.3s ease',
+    };
+
+    const mobileMenuStyle = {
+        position: 'fixed',
+        top: '80px',
+        left: 0,
+        width: '100%',
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        backdropFilter: 'blur(10px)',
+        padding: '2rem',
+        display: isMobileMenuOpen ? 'flex' : 'none',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        borderBottom: '1px solid var(--color-border)',
+        zIndex: 999,
+    };
+
+    return (
+        <>
+            <style>{`
+                @media (max-width: 768px) {
+                    .nav-links {
+                        display: none !important;
+                    }
+                    .hamburger {
+                        display: flex !important;
+                    }
+                }
+            `}</style>
+
+            <nav style={navStyle}>
+                <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                    <Link to="/" style={logoStyle} onClick={() => setIsMobileMenuOpen(false)}>
+                        MicroGrow
+                    </Link>
+
+                    <div className="nav-links">
+                        <Link to="/" style={linkStyle('/')}>Home</Link>
+                        <Link to="/products" style={linkStyle('/products')}>Products</Link>
+                        <Link to="/team" style={linkStyle('/team')}>Team & Contact</Link>
+                    </div>
+
+                    <div
+                        className="hamburger"
+                        style={hamburgerStyle}
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    >
+                        <span style={hamburgerLineStyle}></span>
+                        <span style={hamburgerLineStyle}></span>
+                        <span style={hamburgerLineStyle}></span>
+                    </div>
                 </div>
+            </nav>
+
+            {/* Mobile Menu */}
+            <div style={mobileMenuStyle}>
+                <Link
+                    to="/"
+                    style={{
+                        fontSize: '1.2rem',
+                        fontWeight: isActive('/') ? '600' : '400',
+                        color: isActive('/') ? 'var(--color-primary)' : 'var(--color-text-main)'
+                    }}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                >
+                    Home
+                </Link>
+                <Link
+                    to="/products"
+                    style={{
+                        fontSize: '1.2rem',
+                        fontWeight: isActive('/products') ? '600' : '400',
+                        color: isActive('/products') ? 'var(--color-primary)' : 'var(--color-text-main)'
+                    }}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                >
+                    Products
+                </Link>
+                <Link
+                    to="/team"
+                    style={{
+                        fontSize: '1.2rem',
+                        fontWeight: isActive('/team') ? '600' : '400',
+                        color: isActive('/team') ? 'var(--color-primary)' : 'var(--color-text-main)'
+                    }}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                >
+                    Team & Contact
+                </Link>
             </div>
-        </nav>
+        </>
     );
 };
 
