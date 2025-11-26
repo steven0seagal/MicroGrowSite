@@ -51,7 +51,7 @@ const Home = () => {
 
             {/* Technology Section */}
             <section className="section-fullscreen" style={{ backgroundColor: '#F0F8FF' }}>
-                <div className="container" style={{ display: 'flex', alignItems: 'center', gap: '4rem', flexWrap: 'wrap' }}>
+                <div className="container flex-stack-mobile" style={{ display: 'flex', alignItems: 'center', gap: '4rem', flexWrap: 'wrap' }}>
                     <div style={{ flex: 1, minWidth: '300px' }}>
                         <img
                             src="https://via.placeholder.com/600x600/367588/FFFFFF?text=Microfluidic+Chip"

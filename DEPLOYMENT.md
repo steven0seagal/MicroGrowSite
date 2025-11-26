@@ -11,26 +11,24 @@ This guide provides comprehensive instructions for deploying the MicroGrow websi
 
 ## Step 1: Build the Production Bundle
 
-On your local machine, build the production-ready static files:
+On your server, navigate to the project directory and build:
 
 ```bash
-cd /path/to/MicroGrowSite
+cd /root/MicroGrowSite
 npm run build
 ```
 
-This creates a `dist` folder containing all the static files needed for deployment.
+This creates a `dist` folder at `/root/MicroGrowSite/dist` containing all the static files needed for deployment.
 
-## Step 2: Transfer Files to Server
+## Step 2: Verify Build Output
 
-Transfer the `dist` folder to your server using SCP, SFTP, or rsync:
+Ensure the dist folder contains the built files:
 
 ```bash
-# Using SCP
-scp -r dist/ user@your-server-ip:/var/www/microgrow
-
-# Using rsync (recommended)
-rsync -avz --progress dist/ user@your-server-ip:/var/www/microgrow
+ls -la /root/MicroGrowSite/dist
 ```
+
+You should see `index.html` and an `assets` folder.
 
 ## Step 3: Install Nginx
 
@@ -68,11 +66,12 @@ server {
     listen 80;
     listen [::]:80;
     
-    # Replace with your domain name
-    server_name microgrow.com www.microgrow.com;
+    # Replace with your domain name or server IP
+    server_name your-domain.com www.your-domain.com;
+    # Or use: server_name _;  (to accept all requests)
     
     # Root directory for static files
-    root /var/www/microgrow;
+    root /root/MicroGrowSite/dist;
     index index.html;
     
     # Enable gzip compression
@@ -125,9 +124,14 @@ sudo systemctl reload nginx
 Ensure Nginx can read the files:
 
 ```bash
-sudo chown -R www-data:www-data /var/www/microgrow
-sudo chmod -R 755 /var/www/microgrow
+sudo chown -R www-data:www-data /root/MicroGrowSite/dist
+sudo chmod -R 755 /root/MicroGrowSite/dist
+
+# Allow Nginx to access the /root directory (if needed)
+sudo chmod 755 /root
 ```
+
+**Note**: Serving files from `/root` requires Nginx to have execute permissions on the root directory. Consider moving to `/var/www/` for better security in production.
 
 ## Step 6: Configure Firewall
 
@@ -153,7 +157,7 @@ Secure your site with a free SSL certificate:
 sudo apt install certbot python3-certbot-nginx -y
 
 # Obtain and install certificate
-sudo certbot --nginx -d microgrow.com -d www.microgrow.com
+sudo certbot --nginx -d microgrow.bio -d www.microgrow.bio
 
 # Follow the prompts:
 # - Enter your email address
@@ -216,19 +220,33 @@ add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsaf
 
 ### Option 1: Manual Deployment Script
 
-Create a deployment script `deploy.sh`:
+Create a deployment script `deploy.sh` on the server:
 
 ```bash
 #!/bin/bash
 set -e
 
+echo "Navigating to project directory..."
+cd /root/MicroGrowSite
+
+echo "Pulling latest changes (if using git)..."
+# git pull origin main
+
+echo "Installing dependencies..."
+npm ci
+
 echo "Building production bundle..."
 npm run build
 
-echo "Deploying to server..."
-rsync -avz --delete dist/ user@your-server-ip:/var/www/microgrow
+echo "Reloading Nginx..."
+sudo systemctl reload nginx
 
 echo "Deployment complete!"
+```
+
+Make it executable:
+```bash
+chmod +x deploy.sh
 ```
 
 ### Option 2: GitHub Actions (CI/CD)
@@ -265,7 +283,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: /var/www/microgrow
+          TARGET: /root/MicroGrowSite/dist
           SOURCE: dist/
 ```
 
@@ -299,12 +317,14 @@ sudo systemctl status nginx
 - Verify file permissions: `ls -la /var/www/microgrow`
 
 **2. 403 Forbidden**
-- Fix permissions: `sudo chmod -R 755 /var/www/microgrow`
+- Fix permissions: `sudo chmod -R 755 /root/MicroGrowSite/dist`
+- Ensure Nginx can access /root: `sudo chmod 755 /root`
 - Check SELinux (if applicable): `sudo setenforce 0`
 
 **3. Site not updating**
 - Clear browser cache
-- Verify files on server: `ls -la /var/www/microgrow`
+- Rebuild: `cd /root/MicroGrowSite && npm run build`
+- Verify files on server: `ls -la /root/MicroGrowSite/dist`
 - Force reload Nginx: `sudo systemctl reload nginx`
 
 **4. SSL certificate issues**
@@ -316,12 +336,16 @@ sudo systemctl status nginx
 ### Update the Site
 
 ```bash
-# On local machine
+# On the server
+cd /root/MicroGrowSite
+
+# Pull latest changes (if using git)
+git pull origin main
+
+# Rebuild
 npm run build
 
-# Transfer to server
-rsync -avz --delete dist/ user@your-server-ip:/var/www/microgrow
-
+# Nginx will automatically serve the new files
 # No need to restart Nginx for static file changes
 ```
 

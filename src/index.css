@@ -167,3 +167,46 @@ img {
 .delay-3 {
   animation-delay: 0.6s;
 }
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  :root {
+    /* Adjust typography for smaller screens */
+    --font-size-h1: 2.5rem;
+    --font-size-h2: 2rem;
+    --font-size-h3: 1.75rem;
+    --font-size-large: 1.125rem;
+    --font-size-base: 16px;
+
+    /* Adjust spacing */
+    --spacing-lg: 2rem;
+    --spacing-md: 1.5rem;
+    --spacing-sm: 0.75rem;
+  }
+
+  .section-fullscreen {
+    min-height: auto;
+    padding: var(--spacing-lg) var(--spacing-sm);
+    height: auto;
+    /* Allow content to dictate height on mobile */
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  /* Utility for stacking flex containers on mobile */
+  .flex-stack-mobile {
+    flex-direction: column !important;
+    gap: 2rem !important;
+  }
+
+  /* Navbar Mobile Styles */
+  .nav-links {
+    display: none !important;
+  }
+
+  .hamburger {
+    display: flex !important;
+  }
+}

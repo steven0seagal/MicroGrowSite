@@ -45,7 +45,7 @@ const Team = () => {
             {/* Section 2: Photos (Team Grid) */}
             <section className="section-fullscreen" style={{ backgroundColor: 'white' }}>
                 <div className="container">
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--spacing-lg)' }}>
                         {teamMembers.map((member, index) => (
                             <div key={member.id} className={`fade-in-up delay-${index + 1}`} style={{ textAlign: 'center' }}>
                                 <img

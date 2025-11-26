@@ -94,16 +94,7 @@ const Navbar = () => {
 
     return (
         <>
-            <style>{`
-                @media (max-width: 768px) {
-                    .nav-links {
-                        display: none !important;
-                    }
-                    .hamburger {
-                        display: flex !important;
-                    }
-                }
-            `}</style>
+
 
             <nav style={navStyle}>
                 <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
