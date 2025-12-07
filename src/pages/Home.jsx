@@ -51,20 +51,6 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Our Mission Section */}
-            <section className="section-fullscreen" style={{ backgroundColor: 'white' }}>
-                <div className="container" style={{ maxWidth: '900px' }}>
-                    <div className="fade-in-up" style={{ textAlign: 'center' }}>
-                        <h2 style={{ fontSize: 'var(--font-size-h2)', color: 'var(--color-primary)', marginBottom: 'var(--spacing-sm)' }}>
-                            {t('home.mission.title')}
-                        </h2>
-                        <p className="text-large" style={{ color: 'var(--color-text-light)', lineHeight: '1.8' }}>
-                            {t('home.mission.text')}
-                        </p>
-                    </div>
-                </div>
-            </section>
-
             {/* The Solution Section */}
             <section className="section-fullscreen" style={{ backgroundColor: '#F5F5F7' }}>
                 <div className="container" style={{ maxWidth: '900px' }}>
@@ -74,6 +60,20 @@ const Home = () => {
                         </h2>
                         <p className="text-large" style={{ color: 'var(--color-text-light)', lineHeight: '1.8' }}>
                             {t('home.solution.text')}
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* Our Mission Section */}
+            <section className="section-fullscreen" style={{ backgroundColor: 'white' }}>
+                <div className="container" style={{ maxWidth: '900px' }}>
+                    <div className="fade-in-up" style={{ textAlign: 'center' }}>
+                        <h2 style={{ fontSize: 'var(--font-size-h2)', color: 'var(--color-primary)', marginBottom: 'var(--spacing-sm)' }}>
+                            {t('home.mission.title')}
+                        </h2>
+                        <p className="text-large" style={{ color: 'var(--color-text-light)', lineHeight: '1.8' }}>
+                            {t('home.mission.text')}
                         </p>
                     </div>
                 </div>
