@@ -1,97 +1,123 @@
-import React, { useState } from 'react';
-import QRScanner from '../components/QRScanner';
-
-const products = [
-    {
-        id: 'chip-001',
-        name: 'MicroChip Alpha',
-        description: 'The Alpha series is designed for high-throughput screening. It features 96 independent wells with integrated sensors for real-time monitoring of pH and dissolved oxygen. Ideal for drug discovery and toxicity testing.',
-        image: 'https://via.placeholder.com/400x300/367588/FFFFFF?text=MicroChip+Alpha'
-    },
-    {
-        id: 'chip-002',
-        name: 'MicroChip Beta',
-        description: 'Optimized for long-term cell culture, the Beta series provides a stable environment with precise temperature control. Its microfluidic channels ensure constant nutrient supply and waste removal, mimicking the in vivo vascular system.',
-        image: 'https://via.placeholder.com/400x300/89CFF0/FFFFFF?text=MicroChip+Beta'
-    },
-    {
-        id: 'chip-003',
-        name: 'MicroChip Gamma',
-        description: 'Our most advanced chip for organ-on-a-chip applications. The Gamma series allows for the co-culture of multiple cell types to study complex tissue interactions. Features transparent walls for high-resolution microscopy.',
-        image: 'https://via.placeholder.com/400x300/E0F7FA/333333?text=MicroChip+Gamma'
-    }
-];
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import ProductImage from '../assets/first_chip.jpg';
 
 const Products = () => {
-    const [showScanner, setShowScanner] = useState(false);
-    const [highlightedProduct, setHighlightedProduct] = useState(null);
+    const { t } = useTranslation();
 
-    /* QR Scanner Disabled by User Request
-    const handleScan = (data) => {
-      if (data) {
-        const product = products.find(p => p.id === data || p.name === data);
-        if (product) {
-          setHighlightedProduct(product.id);
-          setShowScanner(false);
-          // Scroll to product
-          const element = document.getElementById(product.id);
-          if (element) element.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          alert(`Product not found for code: ${data}`);
+    // Only one product for now as requested
+    const products = [
+        {
+            id: 'cellsphere',
+            name: t('products.deviceTitle'),
+            description: t('products.deviceDesc'),
+            // Placeholder image as requested
+            image: ProductImage
         }
-      }
+    ];
+
+    const features = ['realistic', 'longterm', 'flow', 'throughput', 'scalable', 'analysis'];
+    const [openFeature, setOpenFeature] = React.useState(null);
+
+    const toggleFeature = (index) => {
+        setOpenFeature(openFeature === index ? null : index);
     };
-    */
 
     return (
         <div className="fade-in-up">
             {/* Section 1: Products Header */}
-            <section className="section-fullscreen" style={{ backgroundColor: '#F5F5F7' }}>
+            <section className="section-fullscreen" style={{ backgroundColor: '#F5F5F7', minHeight: '60vh' }}>
                 <div className="container text-center">
                     <h1 style={{ fontSize: 'var(--font-size-h1)', color: 'var(--color-primary)', marginBottom: 'var(--spacing-sm)' }}>
-                        Our Products
+                        {t('products.title')}
                     </h1>
                     <p className="text-large" style={{ maxWidth: '700px', margin: '0 auto', color: 'var(--color-text-light)' }}>
-                        Advanced microchips engineered for precision cell culture and research excellence.
+                        {t('products.subtitle')}
                     </p>
                 </div>
             </section>
 
             {/* Section 2: Product Listings */}
-            {products.map((product, index) => (
+            {products.map((product) => (
                 <section
                     key={product.id}
                     id={product.id}
                     className="section-fullscreen"
                     style={{
-                        backgroundColor: index % 2 === 0 ? 'white' : '#F5F5F7',
+                        backgroundColor: 'white',
                     }}
                 >
                     <div className="container" style={{
                         display: 'flex',
-                        flexDirection: index % 2 === 0 ? 'row' : 'row-reverse',
-                        alignItems: 'center',
+                        flexDirection: 'row',
+                        alignItems: 'start',
                         gap: 'var(--spacing-lg)',
                         flexWrap: 'wrap'
                     }}>
-                        <div style={{ flex: 1, minWidth: '300px' }}>
+                        <div style={{ flex: 1, minWidth: '350px' }}>
                             <img
                                 src={product.image}
                                 alt={product.name}
                                 style={{ borderRadius: '12px', width: '100%', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}
                             />
                         </div>
-                        <div style={{ flex: 1, minWidth: '300px' }}>
+                        <div style={{ flex: 1.5, minWidth: '350px' }}>
                             <h2 style={{ fontSize: 'var(--font-size-h2)', color: 'var(--color-primary)', marginBottom: 'var(--spacing-sm)' }}>
                                 {product.name}
                             </h2>
-                            <p className="text-large" style={{ color: 'var(--color-text-light)', lineHeight: '1.6' }}>
+                            <p className="text-large" style={{ color: 'var(--color-text-light)', lineHeight: '1.6', marginBottom: '2rem' }}>
                                 {product.description}
                             </p>
+
+                            <div style={{
+                                display: 'grid',
+                                gridTemplateColumns: 'repeat(2, 1fr)',
+                                gap: '1.5rem',
+                                alignItems: 'start'
+                            }}>
+                                {features.map((f, i) => (
+                                    <div
+                                        key={i}
+                                        onClick={() => toggleFeature(i)}
+                                        style={{
+                                            backgroundColor: '#F9FAFB',
+                                            padding: '1.5rem',
+                                            borderRadius: '12px',
+                                            cursor: 'pointer',
+                                            transition: 'background-color 0.2s',
+                                            border: openFeature === i ? '1px solid var(--color-accent)' : '1px solid transparent',
+                                            // gridColumn: openFeature === i ? 'span 2' : 'span 1' // REMOVED: User wants it to stay same width
+                                        }}
+                                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F0F8FF'}
+                                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#F9FAFB'}
+                                    >
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                            <h4 style={{ color: 'var(--color-primary)', marginBottom: 0, fontWeight: 'bold', fontSize: '1rem' }}>
+                                                {t(`products.features.${f}.title`)}
+                                            </h4>
+                                            <span style={{ fontSize: '1.2rem', color: 'var(--color-accent)', fontWeight: 'bold' }}>
+                                                {openFeature === i ? '−' : '+'}
+                                            </span>
+                                        </div>
+
+                                        {openFeature === i && (
+                                            <p style={{ marginTop: '1rem', fontSize: '0.95rem', color: '#555', lineHeight: '1.5', animation: 'fadeInUp 0.3s ease' }}>
+                                                {t(`products.features.${f}.desc`)}
+                                            </p>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </section>
             ))}
+
+            <section className="section-fullscreen" style={{ minHeight: '50vh', backgroundColor: '#F5F5F7' }}>
+                <div className="container text-center">
+                    <h3 style={{ color: 'var(--color-text-light)' }}>{t('products.comingSoon')}</h3>
+                </div>
+            </section>
         </div>
     );
 };

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X6 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="210mm" height="297mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 21000 29700"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str1 {stroke:#214252;stroke-width:20}
+    .str0 {stroke:#214252;stroke-width:141.11}
+    .str2 {stroke:#214252;stroke-width:141.11;stroke-linecap:round}
+    .fil3 {fill:none}
+    .fil2 {fill:#214252}
+    .fil1 {fill:#4ABDB5}
+    .fil0 {fill:#FEFEFE}
+   ]]>
+  </style>
+ </defs>
+ <g id="Warstwa_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2379680346400">
+   <path class="fil0 str0" d="M5940 7555l1524 0c324,0 589,265 589,589l0 498c0,379 -310,689 -689,689l-1424 0c-379,0 -689,-310 -689,-689l0 -398c0,-379 310,-689 689,-689z"/>
+   <circle class="fil1" cx="6650" cy="8442" r="589"/>
+   <ellipse class="fil0" cx="6449" cy="8137" rx="76" ry="74"/>
+   <ellipse class="fil0" cx="6449" cy="8137" rx="76" ry="74"/>
+   <ellipse class="fil0" cx="6828" cy="8293" rx="127" ry="124"/>
+   <ellipse class="fil0" cx="6251" cy="8311" rx="76" ry="74"/>
+   <ellipse class="fil0" cx="7047" cy="8501" rx="76" ry="74"/>
+   <ellipse class="fil0" cx="6605" cy="8812" rx="76" ry="74"/>
+   <ellipse class="fil0" cx="6343" cy="8588" rx="127" ry="124"/>
+   <ellipse class="fil0" cx="6842" cy="8501" rx="45" ry="43"/>
+   <ellipse class="fil0" cx="6788" cy="8108" rx="45" ry="43"/>
+   <ellipse class="fil0" cx="7037" cy="8327" rx="45" ry="43"/>
+   <ellipse class="fil0" cx="6624" cy="8264" rx="45" ry="43"/>
+   <ellipse class="fil0" cx="6634" cy="8109" rx="45" ry="43"/>
+   <ellipse class="fil0" cx="6681" cy="8427" rx="45" ry="43"/>
+   <ellipse class="fil0" cx="6710" cy="8628" rx="45" ry="43"/>
+   <ellipse class="fil0" cx="6548" cy="8553" rx="45" ry="43"/>
+   <ellipse class="fil0" cx="6306" cy="8779" rx="45" ry="43"/>
+   <ellipse class="fil0" cx="6870" cy="8754" rx="76" ry="74"/>
+   <ellipse class="fil0" cx="6605" cy="8812" rx="76" ry="74"/>
+   <ellipse class="fil0" cx="6378" cy="8392" rx="45" ry="43"/>
+   <ellipse class="fil0" cx="6530" cy="8434" rx="45" ry="43"/>
+   <ellipse class="fil0" cx="6477" cy="8323" rx="45" ry="43"/>
+   <ellipse class="fil0" cx="6452" cy="8744" rx="45" ry="43"/>
+   <g>
+    <path class="fil2 str1" d="M8282 8689l-243 0 0 -568 243 0c88,0 160,72 160,160l0 248c0,88 -72,160 -160,160z"/>
+    <line class="fil3 str2" x1="7725" y1="8389" x2="8240" y2= "8390" />
+    <rect class="fil2" x="7888" y="8232" width="110" height="99"/>
+    <circle class="fil0" cx="7891" cy="8230" r="89"/>
+    <rect class="fil2" x="7896" y="8448" width="110" height="99"/>
+    <circle class="fil0" cx="7889" cy="8549" r="89"/>
+   </g>
+   <path class="fil2 str1" d="M5021 8687l243 0 0 -568 -243 0c-88,0 -160,72 -160,160l0 248c0,88 72,160 160,160z"/>
+   <line class="fil3 str2" x1="5578" y1="8387" x2="5063" y2= "8389" />
+   <rect class="fil2" x="5305" y="8230" width="110" height="99"/>
+   <circle class="fil0" cx="5411" cy="8228" r="89"/>
+   <rect class="fil2" x="5297" y="8446" width="112" height="99"/>
+   <ellipse class="fil0" cx="5412" cy="8547" rx="89" ry="88"/>
+  </g>
+ </g>
+</svg>

@@ -1,0 +1,84 @@
+{
+    "nav": {
+        "home": "Strona główna",
+        "products": "Produkty",
+        "team": "Zespół",
+        "contact": "Kontakt",
+        "lang": "EN"
+    },
+    "home": {
+        "heroTitle": "micro",
+        "heroSubtitle": "grow",
+        "introTitle": "Platformy do zaawansowanych hodowli komórkowych i analizy",
+        "introText": "MicroGrow dostarcza innowacyjny system mikroprzepływowy zaprojektowany do szybkiego i niezawodnego wzrostu sferoidów - miniaturowych, fizjologicznie istotnych modeli tkanki ludzkiej.",
+        "cta": "Dowiedz się więcej",
+        "problem": {
+            "title": "Problem",
+            "text": "Obecnie mniej niż 0,01% kandydatów na leki staje się zatwierdzonymi terapiami. Główny problem: wciąż polegamy na modelach przedklinicznych, które nie oddają wiernie ludzkiej fizjologii, tworząc ogromną przepaść między sukcesem laboratoryjnym a wynikami rzeczywistymi."
+        },
+        "mission": {
+            "title": "Nasza Misja",
+            "text": "Celem MicroGrow jest uczynienie rozwoju leków bardziej niezawodnym poprzez dostarczenie badaczom narzędzi, które lepiej naśladują zachowanie prawdziwych ludzkich tkanek. Dążymy do zastąpienia przestarzałych modeli przedklinicznych dokładnymi strukturami tkankowymi 3D hodowanymi w laboratorium, dzięki czemu naukowcy mogą znacznie wcześniej wykryć nieskuteczne lub niebezpieczne kandydatury na leki i szybciej wprowadzać skuteczne terapie dla pacjentów."
+        },
+        "solution": {
+            "title": "Rozwiązanie",
+            "text": "MicroGrow dostarcza innowacyjny system mikroprzepływowy zaprojektowany do szybkiego i niezawodnego wzrostu sferoidów. Technologia integruje zaawansowaną architekturę przestrzenną 3D z prostą obsługą i szybką analizą. System działa jako autonomiczne urządzenie, nie wymaga dodatkowego sprzętu laboratoryjnego i umożliwia eksperymenty wysokoprzepustowe na jednej platformie."
+        },
+        "impact": {
+            "title": "Wpływ",
+            "text": "MicroGrow rozwiązuje główne wąskie gardło w rozwoju leków. Dostarczając narzędzia lepiej naśladujące ludzką fizjologię, umożliwiamy badaczom zmniejszenie ryzyka, obniżenie kosztów rozwoju i poprawę wskaźnika sukcesu nowych terapii."
+        }
+    },
+    "products": {
+        "title": "CellSphereMultiFlow",
+        "subtitle": "Inteligentna Przyszłość Modeli In Vitro",
+        "description": "CellSphereMultiFlow to zaawansowana, a jednocześnie łatwa w użyciu platforma mikroprzepływowa, która umożliwia badania biologiczne i farmakologiczne z poziomem precyzji, wygody i powtarzalności, jakiego nie oferują tradycyjne systemy hodowlane.",
+        "features": {
+            "realistic": {
+                "title": "Realistyczne Modele 3D",
+                "desc": "Szybko i intuicyjnie twórz sferoidy 3D, które ściślej naśladują warunki fizjologiczne."
+            },
+            "longterm": {
+                "title": "Eksperymenty Długoterminowe",
+                "desc": "System wspiera stabilną, długoterminową hodowlę — idealny do badań toksyczności i profilowania odpowiedzi na leki."
+            },
+            "flow": {
+                "title": "Hodowla Przepływowa Bez Pomp",
+                "desc": "Delikatny, fizjologicznie istotny przepływ jest generowany po prostu przy użyciu standardowej kołyski laboratoryjnej — eliminując potrzebę drogich pomp."
+            },
+            "throughput": {
+                "title": "Elastyczność Wysokoprzepustowa",
+                "desc": "Oceniaj wiele związków lub różne modele komórkowe w jednym urządzeniu: więcej danych, mniej zasobów, szybsze decyzje."
+            },
+            "scalable": {
+                "title": "Prawdziwa Skalowalność",
+                "desc": "Zaprojektowany w pełnej zgodności ze standardami płytek SLAS/ANSI, integruje się bezproblemowo z laboratoryjnymi systemami automatyzacji."
+            },
+            "analysis": {
+                "title": "Wszechstronna Analiza",
+                "desc": "Wspiera testy biochemiczne, zaawansowaną mikroskopię i profilowanie molekularne (RNA-seq, proteomika)."
+            }
+        },
+        "deviceTitle": "CellSphereMultiFlow",
+        "deviceDesc": "Inteligentna przyszłość modeli in vitro.",
+        "comingSoon": "Wkrótce więcej produktów..."
+    },
+    "team": {
+        "title": "Nasz Zespół",
+        "agnieszka": {
+            "name": "Dr inż. Agnieszka Żuchowska",
+            "role": "Założycielka, specjalistka w rozwoju platform mikroprzepływowych i wielonarządowych modeli in vitro."
+        },
+        "patrycja": {
+            "name": "Dr inż. Patrycja Baranowska",
+            "role": "Szef Technologii, specjalistka w systemach Lab-on-a-Chip dla modeli komórkowych 3D."
+        },
+        "elzbieta": {
+            "name": "Prof. Dr Hab. Inż. Elżbieta Jastrzębska",
+            "role": "Szef Fundraisingu i Współpracy, specjalistka w mikrotechnologii, systemach Organ-on-a-Chip i modelach komórkowych in vitro."
+        }
+    },
+    "footer": {
+        "copyright": "© 2025 MicroGrow. Wszelkie prawa zastrzeżone."
+    }
+}

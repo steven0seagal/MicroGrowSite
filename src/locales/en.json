@@ -1,0 +1,84 @@
+{
+    "nav": {
+        "home": "Home",
+        "products": "Products",
+        "team": "Team",
+        "contact": "Contact",
+        "lang": "PL"
+    },
+    "home": {
+        "heroTitle": "micro",
+        "heroSubtitle": "grow",
+        "introTitle": "Platforms for advanced cell culture and analysis",
+        "introText": "MicroGrow delivers an innovative microfluidic cell culture system designed for the rapid and reliable growth of spheroids - miniature, physiologically relevant models of human tissue.",
+        "cta": "Learn More",
+        "problem": {
+            "title": "The Problem",
+            "text": "Currently, less than 0.01% of drug candidates become approved therapies and reach the market. The core issue: we still rely on preclinical models that cannot faithfully represent human physiology, creating a massive gap between laboratory success and real-world outcomes."
+        },
+        "mission": {
+            "title": "Our Mission",
+            "text": "MicroGrow’s goal is to make drug development more reliable by giving researchers tools that better imitate how real human tissues behave. We aim to replace outdated preclinical models with accurate 3D tissue structures grown in the lab, so scientists can spot ineffective or unsafe drug candidates much earlier and bring successful therapies to patients faster."
+        },
+        "solution": {
+            "title": "The Solution",
+            "text": "MicroGrow delivers an innovative microfluidic cell culture system designed for the rapid and reliable growth of spheroids. The technology integrates an advanced 3D spatial architecture with simple operation and fast analysis. The system operates as an autonomous device, requires no additional laboratory equipment, and enables high-throughput experimentation within a single platform."
+        },
+        "impact": {
+            "title": "Impact",
+            "text": "MicroGrow addresses the core bottleneck in drug development. By providing tools that better mimic human physiology, we enable researchers to reduce risk, lower development costs, and improve the success rate of new therapies."
+        }
+    },
+    "products": {
+        "title": "CellSphereMultiFlow",
+        "subtitle": "The Intelligent Future of In Vitro Models",
+        "description": "CellSphereMultiFlow is an advanced yet easy-to-use microfluidic platform that enables biological and pharmacological research with a level of precision, convenience, and reproducibility that traditional culture systems cannot offer.",
+        "features": {
+            "realistic": {
+                "title": "Realistic 3D Models",
+                "desc": "Rapidly and intuitively produce 3D spheroids that closely mimic physiological conditions."
+            },
+            "longterm": {
+                "title": "Long-term Experiments",
+                "desc": "Supports stable, long-term culture — ideal for toxicity studies, drug-response profiling, and chronic exposure experiments."
+            },
+            "flow": {
+                "title": "Flow Culture Without Pumps",
+                "desc": "A gentle, physiologically relevant flow is generated simply using a standard laboratory rocker — eliminating the need for expensive pumps."
+            },
+            "throughput": {
+                "title": "High-Throughput Flexibility",
+                "desc": "Evaluate multiple compounds or different cell models in a single device: more data, fewer resources, faster decisions."
+            },
+            "scalable": {
+                "title": "True Scalability",
+                "desc": "Designed fully compliant with SLAS/ANSI plate standards, integrating seamlessly with laboratory automation systems."
+            },
+            "analysis": {
+                "title": "Comprehensive Analysis",
+                "desc": "Supports biochemical tests, advanced microscopy, and molecular profiling (RNA-seq, proteomics)."
+            }
+        },
+        "deviceTitle": "CellSphereMultiFlow",
+        "deviceDesc": "The future of in vitro modeling.",
+        "comingSoon": "More products coming soon..."
+    },
+    "team": {
+        "title": "Our Team",
+        "agnieszka": {
+            "name": "Dr Eng. Agnieszka Żuchowska",
+            "role": "Founder, specialist in microfluidic platform development and multi-organ in vitro models."
+        },
+        "patrycja": {
+            "name": "Dr Eng. Patrycja Baranowska",
+            "role": "Head of Technology, specialist in Lab-on-a-Chip systems for 3D cellular models."
+        },
+        "elzbieta": {
+            "name": "Prof. Dr Hab. Eng. Elżbieta Jastrzębska",
+            "role": "Head of Fundraising and Collaborations, specialist in microtechnology, Organ-on-a-Chip systems, and in vitro cell models."
+        }
+    },
+    "footer": {
+        "copyright": "© 2025 MicroGrow. All rights reserved."
+    }
+}
