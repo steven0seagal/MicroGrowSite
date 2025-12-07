@@ -100,7 +100,7 @@ const Navbar = () => {
             <nav style={navStyle}>
                 <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
                     <Link to="/" onClick={() => setIsMobileMenuOpen(false)} style={{ display: 'flex', alignItems: 'center' }}>
-                        <img src={NavbarLogo} alt="MicroGrow" style={{ height: '50px' }} />
+                        <img src={NavbarLogo} alt="MicroGrow" className="navbar-logo" />
                     </Link>
 
                     <div className="nav-links">

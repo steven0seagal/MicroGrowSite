@@ -66,6 +66,11 @@ img {
 }
 
 /* Utilities */
+.navbar-logo {
+  height: 50px;
+  width: auto;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -206,5 +211,9 @@ img {
 
   .hamburger {
     display: flex !important;
+  }
+
+  .navbar-logo {
+    height: 37.5px;
   }
 }
