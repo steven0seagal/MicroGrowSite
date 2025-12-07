@@ -51,8 +51,7 @@ const Navbar = () => {
         left: 0,
         width: '100%',
         zIndex: 1000,
-        backgroundColor: 'rgba(255, 255, 255, 0.9)',
-        backdropFilter: 'blur(10px)',
+        backgroundColor: '#FFFFFF',
         transition: 'transform 0.3s ease-in-out',
         transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
     };
