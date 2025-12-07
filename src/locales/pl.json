@@ -30,9 +30,9 @@
         }
     },
     "products": {
-        "title": "CellSphereMultiFlow",
+        "title": "CellSphere MultiFlow",
         "subtitle": "Inteligentna Przyszłość Modeli In Vitro",
-        "description": "CellSphereMultiFlow to zaawansowana, a jednocześnie łatwa w użyciu platforma mikroprzepływowa, która umożliwia badania biologiczne i farmakologiczne z poziomem precyzji, wygody i powtarzalności, jakiego nie oferują tradycyjne systemy hodowlane.",
+        "description": "CellSphere MultiFlow to zaawansowana, a jednocześnie łatwa w użyciu platforma mikroprzepływowa, która umożliwia badania biologiczne i farmakologiczne z poziomem precyzji, wygody i powtarzalności, jakiego nie oferują tradycyjne systemy hodowlane.",
         "features": {
             "realistic": {
                 "title": "Realistyczne Modele 3D",
@@ -59,7 +59,7 @@
                 "desc": "Wspiera testy biochemiczne, zaawansowaną mikroskopię i profilowanie molekularne (RNA-seq, proteomika)."
             }
         },
-        "deviceTitle": "CellSphereMultiFlow",
+        "deviceTitle": "CellSphere MultiFlow",
         "deviceDesc": "Inteligentna przyszłość modeli in vitro.",
         "comingSoon": "Wkrótce więcej produktów..."
     },

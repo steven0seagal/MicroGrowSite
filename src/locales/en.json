@@ -30,9 +30,9 @@
         }
     },
     "products": {
-        "title": "CellSphereMultiFlow",
+        "title": "CellSphere MultiFlow",
         "subtitle": "The Intelligent Future of In Vitro Models",
-        "description": "CellSphereMultiFlow is an advanced yet easy-to-use microfluidic platform that enables biological and pharmacological research with a level of precision, convenience, and reproducibility that traditional culture systems cannot offer.",
+        "description": "CellSphere MultiFlow is an advanced yet easy-to-use microfluidic platform that enables biological and pharmacological research with a level of precision, convenience, and reproducibility that traditional culture systems cannot offer.",
         "features": {
             "realistic": {
                 "title": "Realistic 3D Models",
@@ -59,7 +59,7 @@
                 "desc": "Supports biochemical tests, advanced microscopy, and molecular profiling (RNA-seq, proteomics)."
             }
         },
-        "deviceTitle": "CellSphereMultiFlow",
+        "deviceTitle": "CellSphere MultiFlow",
         "deviceDesc": "The future of in vitro modeling.",
         "comingSoon": "More products coming soon..."
     },
