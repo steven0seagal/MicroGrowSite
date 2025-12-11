@@ -55,7 +55,7 @@ const Team = () => {
                         {/* Agnieszka */}
                         <div className="team-card fade-in-up delay-1">
                             <div className="image-wrapper" style={{ marginBottom: '1.5rem', borderRadius: '50%', overflow: 'hidden', width: '200px', height: '200px', margin: '0 auto 1.5rem' }}>
-                                <img src={agnieszkaImg} alt="Dr Eng. Agnieszka Żuchowska" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                <img src={agnieszkaImg} alt="Dr Eng. Agnieszka Żuchowska" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
                             </div>
                             <h3 style={{ color: 'var(--color-primary)', marginBottom: '0.5rem' }}>{t('team.agnieszka.name')}</h3>
                             <p style={{ color: '#666', lineHeight: '1.4' }}>{t('team.agnieszka.role')}</p>
@@ -64,7 +64,7 @@ const Team = () => {
                         {/* Patrycja */}
                         <div className="team-card fade-in-up delay-2">
                             <div className="image-wrapper" style={{ marginBottom: '1.5rem', borderRadius: '50%', overflow: 'hidden', width: '200px', height: '200px', margin: '0 auto 1.5rem' }}>
-                                <img src={patrycjaImg} alt="Dr Eng. Patrycja Baranowska" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                <img src={patrycjaImg} alt="Dr Eng. Patrycja Baranowska" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }} />
                             </div>
                             <h3 style={{ color: 'var(--color-primary)', marginBottom: '0.5rem' }}>{t('team.patrycja.name')}</h3>
                             <p style={{ color: '#666', lineHeight: '1.4' }}>{t('team.patrycja.role')}</p>
