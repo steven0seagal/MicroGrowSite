@@ -1,0 +1,174 @@
+# =============================================================================
+# STAGE 1: BUILD STAGE (React Application)
+# =============================================================================
+FROM node:22-alpine AS builder
+
+# Security: Run as non-root during build
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nodejs -u 1001
+
+WORKDIR /app
+
+# Copy package files first (layer caching optimization)
+COPY package*.json ./
+
+# Install ALL dependencies (including devDependencies needed for build)
+RUN npm ci && \
+    npm cache clean --force
+
+# Copy source code
+COPY --chown=nodejs:nodejs . .
+
+# Build the application
+RUN npm run build
+
+# Verify build output
+RUN test -f dist/index.html || (echo "Build failed: index.html not found" && exit 1)
+
+# =============================================================================
+# STAGE 2: MODSECURITY BUILD STAGE (kompilacja z source dla pełnej kontroli)
+# =============================================================================
+FROM alpine:3.19 AS modsecurity-builder
+
+# Install build dependencies
+RUN apk add --no-cache \
+    gcc g++ make autoconf automake libtool \
+    curl-dev libxml2-dev pcre-dev yajl-dev \
+    geoip-dev lmdb-dev libmaxminddb-dev \
+    git
+
+# Build ModSecurity v3
+WORKDIR /tmp
+RUN git clone --depth 1 -b v3.0.12 https://github.com/SpiderLabs/ModSecurity.git && \
+    cd ModSecurity && \
+    git submodule init && \
+    git submodule update && \
+    ./build.sh && \
+    ./configure && \
+    make -j$(nproc) && \
+    make install
+
+# Build ModSecurity-nginx connector
+RUN git clone --depth 1 https://github.com/SpiderLabs/ModSecurity-nginx.git
+
+# =============================================================================
+# STAGE 3: NGINX BUILD STAGE (kompilacja Nginx z ModSecurity)
+# =============================================================================
+FROM alpine:3.19 AS nginx-builder
+
+# Copy ModSecurity from builder
+COPY --from=modsecurity-builder /usr/local/modsecurity /usr/local/modsecurity
+COPY --from=modsecurity-builder /tmp/ModSecurity-nginx /tmp/ModSecurity-nginx
+
+# Install build dependencies for Nginx
+RUN apk add --no-cache \
+    gcc g++ make pcre-dev zlib-dev openssl-dev \
+    curl-dev libxml2-dev pcre-dev yajl-dev \
+    lmdb-dev libmaxminddb-dev
+
+# Download and build Nginx with ModSecurity
+WORKDIR /tmp
+ENV NGINX_VERSION=1.26.2
+
+RUN wget https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz && \
+    tar -xzf nginx-${NGINX_VERSION}.tar.gz && \
+    cd nginx-${NGINX_VERSION} && \
+    ./configure \
+        --prefix=/etc/nginx \
+        --sbin-path=/usr/sbin/nginx \
+        --modules-path=/usr/lib/nginx/modules \
+        --conf-path=/etc/nginx/nginx.conf \
+        --error-log-path=/var/log/nginx/error.log \
+        --http-log-path=/var/log/nginx/access.log \
+        --pid-path=/var/run/nginx.pid \
+        --lock-path=/var/run/nginx.lock \
+        --http-client-body-temp-path=/var/cache/nginx/client_temp \
+        --http-proxy-temp-path=/var/cache/nginx/proxy_temp \
+        --user=nginx \
+        --group=nginx \
+        --with-http_ssl_module \
+        --with-http_realip_module \
+        --with-http_addition_module \
+        --with-http_sub_module \
+        --with-http_gunzip_module \
+        --with-http_gzip_static_module \
+        --with-http_secure_link_module \
+        --with-http_stub_status_module \
+        --with-http_auth_request_module \
+        --with-threads \
+        --with-stream \
+        --with-stream_ssl_module \
+        --with-http_v2_module \
+        --add-dynamic-module=/tmp/ModSecurity-nginx && \
+    make -j$(nproc) && \
+    make install
+
+# =============================================================================
+# STAGE 4: PRODUCTION STAGE (minimal runtime)
+# =============================================================================
+FROM alpine:3.19
+
+# Metadata
+LABEL maintainer="security@microgrow.bio"
+LABEL description="Hardened Nginx with ModSecurity for MicroGrow SPA"
+LABEL version="1.0.0"
+
+# Install only runtime dependencies (minimal attack surface)
+RUN apk add --no-cache \
+    pcre libxml2 yajl lmdb curl libmaxminddb \
+    ca-certificates tzdata \
+    certbot certbot-nginx \
+    openssl wget && \
+    # Create nginx user (non-root)
+    addgroup -g 101 -S nginx && \
+    adduser -S -D -H -u 101 -h /var/cache/nginx -s /sbin/nologin -G nginx -g nginx nginx && \
+    # Create required directories
+    mkdir -p /var/cache/nginx /var/log/nginx /var/run /etc/nginx/ssl /var/www/html /var/www/certbot && \
+    # Set permissions
+    chown -R nginx:nginx /var/cache/nginx /var/log/nginx /var/www/html && \
+    chmod 750 /var/log/nginx
+
+# Copy Nginx binary and modules from builder
+COPY --from=nginx-builder /usr/sbin/nginx /usr/sbin/nginx
+COPY --from=nginx-builder /etc/nginx /etc/nginx
+COPY --from=nginx-builder /usr/lib/nginx/modules /usr/lib/nginx/modules
+
+# Copy ModSecurity libraries
+COPY --from=modsecurity-builder /usr/local/modsecurity /usr/local/modsecurity
+
+# Download OWASP Core Rule Set v4.x
+RUN wget -qO- https://github.com/coreruleset/coreruleset/archive/refs/tags/v4.7.0.tar.gz | \
+    tar -xz -C /etc/nginx && \
+    mv /etc/nginx/coreruleset-4.7.0 /etc/nginx/owasp-crs && \
+    cp /etc/nginx/owasp-crs/crs-setup.conf.example /etc/nginx/owasp-crs/crs-setup.conf
+
+# Copy application build from builder stage
+COPY --from=builder --chown=nginx:nginx /app/dist /var/www/html
+
+# Copy configuration files
+COPY --chown=root:root nginx.conf /etc/nginx/nginx.conf
+COPY --chown=root:root modsecurity.conf /etc/nginx/modsecurity.conf
+COPY --chown=root:root owasp-crs-customization.conf /etc/nginx/owasp-crs/
+COPY --chown=root:root docker-entrypoint.sh /usr/local/bin/
+COPY --chown=root:root healthcheck.sh /usr/local/bin/
+
+# Make scripts executable
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh /usr/local/bin/healthcheck.sh
+
+# Security hardening
+RUN rm -rf /tmp/* /var/cache/apk/* && \
+    # Remove unnecessary setuid binaries (attack surface reduction)
+    find / -xdev -perm -4000 -type f -exec chmod u-s {} \; 2>/dev/null || true && \
+    # Restrict /proc access
+    chmod 700 /root
+
+# Expose ports
+EXPOSE 80 443
+
+# Healthcheck
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+    CMD ["/usr/local/bin/healthcheck.sh"]
+
+# Start nginx via entrypoint (runs as root initially to bind ports, then drops to nginx user)
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]
