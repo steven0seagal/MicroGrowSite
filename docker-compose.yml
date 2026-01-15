@@ -70,8 +70,8 @@ services:
     container_name: microgrow-certbot
 
     volumes:
-      - letsencrypt-certs:/etc/letsencrypt
-      - letsencrypt-www:/var/www/certbot
+      - ./ssl:/etc/letsencrypt
+      - ./ssl/www:/var/www/certbot
       - ./logs/certbot:/var/log/letsencrypt
 
     networks:
